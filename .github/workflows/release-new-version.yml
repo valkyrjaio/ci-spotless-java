@@ -55,7 +55,7 @@ jobs:
   # a consuming build resolves `id("io.valkyrja.ci-spotless")` without a `pluginManagement` block.
   publish-plugin-portal:
     needs: release
-    uses: valkyrjaio/.github/.github/workflows/_java-release-plugin-portal-publish.yml@06472907a89cf175883fb9f82d5903fb0b43bea4
+    uses: valkyrjaio/.github/.github/workflows/_java-release-plugin-portal-publish.yml@107d65ecb1d2cecc72c4839a53958f09ab753b9a
     secrets:
       GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
       GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
