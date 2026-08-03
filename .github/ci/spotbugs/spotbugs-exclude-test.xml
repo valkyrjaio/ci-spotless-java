@@ -3,7 +3,7 @@
     SpotBugs exclude filter for the JUnit build's test tree.
 
     Kept separate from spotbugs-exclude.xml so `src` stays strict: nothing here
-    can loosen the template's own analysis. Every entry is a JUnit/fixture idiom
+    can loosen this package's own analysis. Every entry is a JUnit/fixture idiom
     that SpotBugs reports because it assumes production code — none of them
     describe a defect in a test.
 

@@ -10,7 +10,5 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-rootProject.name = "valkyrja-template"
+rootProject.name = "ci-spotless-java"
 
-// For local development against the framework source:
-// includeBuild("../../valkyrja")

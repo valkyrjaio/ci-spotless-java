@@ -6,34 +6,34 @@
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-package io.valkyrja.tests.unit.template.constant;
+package io.valkyrja.tests.unit.spotless.constant;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.valkyrja.template.constant.TemplateInfo;
+import io.valkyrja.spotless.constant.SpotlessInfo;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for {@link TemplateInfo}.
+ * Tests for {@link SpotlessInfo}.
  *
  * <p>The release workflow rewrites both constants. Each test asserts a format and never an exact
  * value.
  */
-final class TemplateInfoTest {
+final class SpotlessInfoTest {
 
     @Test
     void versionHasTheVersionFormat() {
         assertTrue(
-                TemplateInfo.VERSION.matches("\\d+\\.\\d+\\.\\d+"),
-                "VERSION must have the format MAJOR.MINOR.PATCH, but is: " + TemplateInfo.VERSION);
+                SpotlessInfo.VERSION.matches("\\d+\\.\\d+\\.\\d+"),
+                "VERSION must have the format MAJOR.MINOR.PATCH, but is: " + SpotlessInfo.VERSION);
     }
 
     @Test
     void versionBuildDateTimeHasTheBuildDateTimeFormat() {
         assertTrue(
-                TemplateInfo.VERSION_BUILD_DATE_TIME.matches(
+                SpotlessInfo.VERSION_BUILD_DATE_TIME.matches(
                         "[A-Z][a-z]+ \\d{1,2} \\d{4} \\d{2}:\\d{2}:\\d{2} MST"),
                 "VERSION_BUILD_DATE_TIME must have the format 'Month D YYYY HH:MM:SS MST', but is: "
-                        + TemplateInfo.VERSION_BUILD_DATE_TIME);
+                        + SpotlessInfo.VERSION_BUILD_DATE_TIME);
     }
 }

@@ -90,7 +90,7 @@ tasks.test {
 }
 
 // The test tree gets its own filter so `src` stays strict — the JUnit idioms excluded for the tests
-// can never loosen the template's own analysis.
+// can never loosen this package's own analysis.
 tasks.spotbugsTest {
     excludeFilter.set(layout.projectDirectory.file("spotbugs-exclude-test.xml"))
 }
