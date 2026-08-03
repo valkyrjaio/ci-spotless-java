@@ -41,9 +41,10 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("io.valkyrja:valkyrja:26.6.0")
-}
+// This package declares no dependency. A build script puts it on the buildscript classpath, which
+// Gradle resolves before it evaluates the script, so every dependency here would resolve for each
+// consuming repository's Spotless build as well.
+dependencies {}
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -54,9 +55,9 @@ publishing {
         create<MavenPublication>("maven") {
             from(components["java"])
             pom {
-                name.set("Valkyrja Template")
-                description.set("A Java package template for the Valkyrja Framework.")
-                url.set("https://github.com/valkyrjaio/java-template")
+                name.set("Valkyrja Spotless")
+                description.set("Shared Spotless configuration for Valkyrja Java repositories.")
+                url.set("https://github.com/valkyrjaio/ci-spotless-java")
                 licenses {
                     license {
                         name.set("MIT License")
@@ -71,9 +72,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/valkyrjaio/java-template.git")
-                    developerConnection.set("scm:git:ssh://github.com/valkyrjaio/java-template.git")
-                    url.set("https://github.com/valkyrjaio/java-template")
+                    connection.set("scm:git:git://github.com/valkyrjaio/ci-spotless-java.git")
+                    developerConnection.set("scm:git:ssh://github.com/valkyrjaio/ci-spotless-java.git")
+                    url.set("https://github.com/valkyrjaio/ci-spotless-java")
                 }
             }
         }

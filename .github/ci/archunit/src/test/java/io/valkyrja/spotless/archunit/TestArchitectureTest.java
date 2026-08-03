@@ -6,7 +6,7 @@
  * Released under the MIT License. See LICENSE.md for details.
  */
 
-package io.valkyrja.template.archunit;
+package io.valkyrja.spotless.archunit;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;

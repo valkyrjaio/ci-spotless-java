@@ -69,7 +69,7 @@ tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.errorprone {
         check("NullAway", CheckSeverity.ERROR)
-        option("NullAway:AnnotatedPackages", "io.valkyrja.template")
+        option("NullAway:AnnotatedPackages", "io.valkyrja.spotless")
     }
 }
 
@@ -83,7 +83,7 @@ tasks.named("check") {
     dependsOn(tasks.compileTestJava)
 }
 
-// NullAway enforces a nullness contract on the template's own API. Tests deliberately break it to
+// NullAway enforces a nullness contract on this package's own API. Tests deliberately break it to
 // reach defensive guards, so it is scoped to `src`; every other Error Prone check still applies to
 // the test tree.
 tasks.compileTestJava {

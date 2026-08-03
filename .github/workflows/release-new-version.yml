@@ -36,5 +36,5 @@ jobs:
           {"name": "SpotBugs",    "directory": ".github/ci/spotbugs"},
           {"name": "JUnit",       "directory": ".github/ci/junit"}
         ]
-      info-class-path: src/main/java/io/valkyrja/template/constant/TemplateInfo.java
-      info-class-name: TemplateInfo
+      info-class-path: src/main/java/io/valkyrja/spotless/constant/SpotlessInfo.java
+      info-class-name: SpotlessInfo

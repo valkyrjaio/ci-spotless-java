@@ -2,55 +2,90 @@
     <img src="https://raw.githubusercontent.com/valkyrjaio/art/refs/heads/master/long-banner/orange/java.png" width="100%">
 </a></p>
 
-# Project Template (Java)
+# Valkyrja Spotless (Java)
 
-A starter template for creating new Java repositories in the Valkyrjaio
-organization.
+Shared Spotless configuration for Valkyrja Java repositories.
 
-This template ships with the full Valkyrja CI pipeline pre-wired (commit-message
-check, trailing-newline check), a minimal Gradle setup, and the repository
-conventions used across the rest of the org. Use it as the starting point for any
-new Java package or integration repo — not for end-user applications built on the
-Valkyrja framework (use [`valkyrja-starter-app-java`][starter url] for that).
+This package holds the copyright header text. A repository states only its own
+package name, and this package builds the header from it. A repository that
+keeps a copy of the whole header can drift from the text, and no tool reports
+the drift.
+
+[`COPYRIGHT_HEADER.md`][copyright header url] in the `.github` repository
+specifies the text, and it maps each repository to its package name.
 
 Usage
 -----
 
-### Use this template _(recommended)_
+Put the package on the buildscript classpath, then call it from the Spotless
+configuration in `.github/ci/spotless/build.gradle.kts`:
 
-This repository is a GitHub template. Click the **Use this template** button
-at the top of the repo to create a new repository in the Valkyrjaio
-organization, pre-populated with the template's structure and CI.
+```kotlin
+import io.valkyrja.spotless.CopyrightHeader
 
-### After Creating Your Repo
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 
-1. Update `build.gradle.kts` with your package's artifact ID, description, and
-   GitHub URL
-2. Update `settings.gradle.kts` with your project name
-3. Replace the contents of `src/` with your package's source code
-4. Update this `README.md` to describe the new package
-5. Configure the required secrets and variables — see
-   [`REPOSITORY_NAMING.md`][repository naming url] for naming guidance and
-   `.github`'s workflow documentation for secret requirements
-6. Verify CI passes on the first commit
+    dependencies {
+        classpath("io.valkyrja:ci-spotless-java:26.0.0")
+    }
+}
 
-What's Included
----------------
+spotless {
+    java {
+        target("src/**/*.java")
+        googleJavaFormat("1.27.0").aosp()
+        licenseHeader(CopyrightHeader.block("Valkyrja Framework"))
+    }
+}
+```
 
-- **CI pipeline** — the same commit-message and trailing-newline checks used
-  across every Valkyrjaio repo
-- **Gradle configuration** — `build.gradle.kts` with Maven Central publishing
-  and signing, matching the org convention
-- **Repository conventions** — aligned with
-  [`REPOSITORY_NAMING.md`][repository naming url] and
-  [`VOCABULARY.md`][vocabulary url]
+`block` builds the header that a Java file takes. A shell script takes line
+comments instead, so it takes `shell`, with the delimiter that holds the header
+below the shebang:
+
+```kotlin
+spotless {
+    format("shell") {
+        target("app/bin/cli", "app/public/index")
+        licenseHeader(CopyrightHeader.shell("Valkyrja Application"), "(?=[^#\\s])")
+            .skipLinesMatching("^#!.*$")
+    }
+}
+```
+
+Both forms come from one notice, so the two cannot drift from each other.
+
+### Pass the package name, never the header
+
+`block` and `shell` take a package name, such as `Valkyrja Framework`. A caller
+that passes an assembled header builds the sentence
+`This file is part of the <whole header> package.`
+
+Warning: Spotless writes that sentence into every file, and `spotlessCheck`
+afterwards passes, because the files and the configuration then agree with each
+other. Every step of the gate reports success while each file holds a corrupt
+header. A name that spans lines therefore raises `IllegalArgumentException`
+rather than rendering.
+
+```kotlin
+// Wrong — this passes the assembled header, and every file takes the corrupt sentence.
+licenseHeader(CopyrightHeader.block(theWholeHeaderText))
+```
+
+```kotlin
+// Right — this passes the package name, and this package builds the header.
+licenseHeader(CopyrightHeader.block("Valkyrja Framework"))
+```
 
 Versioning and Release Process
 ------------------------------
 
-This template follows [semantic versioning][semantic versioning url] with a
-major release every year, and support for each major version for 2 years
-from the date of release.
+This package follows [semantic versioning][semantic versioning url] with a major
+release every year, and support for each major version for 2 years from the date
+of release.
 
 For more information see our
 [Versioning and Release Process documentation][Versioning and Release Process url].
@@ -69,10 +104,6 @@ fixes are provided for 2 years after the initial release.
 Contributing
 ------------
 
-This template is an open-source, community-driven project. Improvements to
-the template itself — refinements to the included CI configuration, Gradle
-setup, or documentation — are welcome.
-
 See [`CONTRIBUTING.md`][contributing url] for the submission process and
 [`VOCABULARY.md`][vocabulary url] for the terminology used across Valkyrja.
 
@@ -85,16 +116,15 @@ If you discover a security vulnerability, please follow our
 License
 -------
 
-This template is open-source software licensed under the
+This package is open-source software licensed under the
 [MIT license][MIT license url]. See [`LICENSE.md`](./LICENSE.md).
 
 [Valkyrja url]: https://valkyrja.io
-[starter url]: https://github.com/valkyrjaio/valkyrja-starter-app-java
-[repository naming url]: https://github.com/valkyrjaio/.github/blob/26.x/REPOSITORY_NAMING.md
+[copyright header url]: https://github.com/valkyrjaio/.github/blob/26.x/COPYRIGHT_HEADER.md
 [vocabulary url]: https://github.com/valkyrjaio/.github/blob/26.x/VOCABULARY.md
 [contributing url]: https://github.com/valkyrjaio/.github/blob/26.x/CONTRIBUTING.md
 [security vulnerabilities url]: https://github.com/valkyrjaio/.github/blob/26.x/SECURITY.md
-[Versioning and Release Process url]: ./VERSIONING_AND_RELEASE_PROCESS.md
+[Versioning and Release Process url]: https://github.com/valkyrjaio/valkyrja-java/blob/26.x/src/main/java/io/valkyrja/VERSIONING_AND_RELEASE_PROCESS.md
 [semantic versioning url]: https://semver.org/
 [MIT license url]: https://opensource.org/licenses/MIT
 [license url]: ./LICENSE.md
