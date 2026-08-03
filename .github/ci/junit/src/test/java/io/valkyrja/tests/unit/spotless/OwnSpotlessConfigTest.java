@@ -8,6 +8,8 @@
 
 package io.valkyrja.tests.unit.spotless;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.valkyrja.spotless.CopyrightHeader;
@@ -61,7 +63,21 @@ final class OwnSpotlessConfigTest {
      * @throws IllegalStateException when the config states no identifier
      */
     private static String packageName() throws IOException {
-        final String config = Files.readString(COPYRIGHT_HEADER_CONFIG, StandardCharsets.UTF_8);
+        return identifierIn(Files.readString(COPYRIGHT_HEADER_CONFIG, StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Takes the package identifier out of the copyright header check's config.
+     *
+     * <p>This takes the config text rather than reading the file, so a test can reach the failure
+     * branch below with text that states no identifier. The real config always states one, so a
+     * method that read the file could never reach it.
+     *
+     * @param config the config text
+     * @return the package identifier the text states
+     * @throws IllegalStateException when the text states no identifier
+     */
+    private static String identifierIn(final String config) {
         final Matcher matcher = IDENTIFIER_ASSIGNMENT.matcher(config);
 
         if (!matcher.find()) {
@@ -73,6 +89,21 @@ final class OwnSpotlessConfigTest {
         }
 
         return matcher.group(1);
+    }
+
+    @Test
+    void theIdentifierIsTakenFromTheAssignment() {
+        assertEquals("Valkyrja Framework", identifierIn("IDENTIFIER='Valkyrja Framework'\n"));
+    }
+
+    @Test
+    void configTextThatStatesNoIdentifierIsRejected() {
+        final IllegalStateException thrown =
+                assertThrows(IllegalStateException.class, () -> identifierIn("# no assignment\n"));
+
+        assertTrue(
+                thrown.getMessage().contains("states no IDENTIFIER"),
+                "The rejection must name the missing assignment, but is: " + thrown.getMessage());
     }
 
     @Test
