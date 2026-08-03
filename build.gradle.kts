@@ -10,8 +10,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
     java
-    `maven-publish`
-    signing
+    id("com.vanniktech.maven.publish") version "0.37.0"
     id("com.github.ben-manes.versions") version "0.58.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
@@ -28,13 +27,13 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates") {
 }
 
 group = "io.valkyrja"
-version = "26.0.0"
+// Sourced from VERSION.md so the release pipeline (which bumps VERSION.md) drives the
+// version that gets published. The leading "v" is stripped for Maven compatibility.
+version = file("VERSION.md").readText().trim().removePrefix("v")
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-    withJavadocJar()
-    withSourcesJar()
 }
 
 repositories {
@@ -50,45 +49,35 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-            pom {
-                name.set("Valkyrja Spotless")
-                description.set("Shared Spotless configuration for Valkyrja Java repositories.")
-                url.set("https://github.com/valkyrjaio/ci-spotless-java")
-                licenses {
-                    license {
-                        name.set("MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("melechmizrachi")
-                        name.set("Melech Mizrachi")
-                        email.set("melechmizrachi@gmail.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/valkyrjaio/ci-spotless-java.git")
-                    developerConnection.set("scm:git:ssh://github.com/valkyrjaio/ci-spotless-java.git")
-                    url.set("https://github.com/valkyrjaio/ci-spotless-java")
-                }
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    coordinates(group.toString(), "ci-spotless-java", version.toString())
+
+    pom {
+        name.set("Valkyrja Spotless")
+        description.set("Shared Spotless configuration for Valkyrja Java repositories.")
+        url.set("https://github.com/valkyrjaio/ci-spotless-java")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/licenses/MIT")
             }
         }
-    }
-    repositories {
-        maven {
-            name = "MavenCentral"
-            url = uri("https://central.sonatype.com/api/v1/publisher/upload")
+        developers {
+            developer {
+                id.set("melechmizrachi")
+                name.set("Melech Mizrachi")
+                email.set("melechmizrachi@gmail.com")
+            }
+        }
+        scm {
+            connection.set("scm:git:git://github.com/valkyrjaio/ci-spotless-java.git")
+            developerConnection.set("scm:git:ssh://github.com/valkyrjaio/ci-spotless-java.git")
+            url.set("https://github.com/valkyrjaio/ci-spotless-java")
         }
     }
-}
-
-signing {
-    sign(publishing.publications["maven"])
 }
 
 // CI tasks — run from the project root without cd-ing into each CI directory
