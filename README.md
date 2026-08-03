@@ -7,7 +7,7 @@
 Shared Spotless configuration for Valkyrja Java repositories.
 
 <p>
-    <a href="https://central.sonatype.com/artifact/io.valkyrja/ci-spotless-java"><img src="https://img.shields.io/maven-central/v/io.valkyrja/ci-spotless-java?label=Maven%20Central" alt="Latest Stable Version"></a>
+    <a href="https://central.sonatype.com/artifact/io.valkyrja/ci-spotless"><img src="https://img.shields.io/maven-central/v/io.valkyrja/ci-spotless?label=Maven%20Central" alt="Latest Stable Version"></a>
     <a href="https://github.com/valkyrjaio/ci-spotless-java"><img src="https://img.shields.io/badge/Java-21--25-orange" alt="Java Version"></a>
     <a href="https://github.com/valkyrjaio/ci-spotless-java/blob/26.x/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
     <a href="https://github.com/valkyrjaio/ci-spotless-java/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/ci-spotless-java/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
@@ -37,7 +37,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("io.valkyrja:ci-spotless-java:26.0.0")
+        classpath("io.valkyrja:ci-spotless:26.1.0")
     }
 }
 
