@@ -1,6 +1,10 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.0.0...26.x)
+## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.0...26.x)
+
+## [v26.1.0](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.0.0...v26.1.0) - 2026-08-02
+
+* [Gradle] fix!: Publish as io.valkyrja:ci-spotless by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/ci-spotless-java/pull/6
 
 ## [v26.0.0](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/26.x...v26.0.0) - 2026-08-02
 
