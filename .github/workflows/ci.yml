@@ -71,15 +71,17 @@ jobs:
       # `source-paths` is a block scalar, so a `#` line is content rather than a comment and would
       # become a nonsense path filter. Every note about these globs belongs here instead.
       #
-      # The Spotless build script is listed because OwnSpotlessConfigTest reads it and compares its
-      # inline header against what CopyrightHeader builds. That comparison is the only thing
-      # holding the two in agreement, so the JUnit job must run when the script changes. Without
-      # the glob the job is filtered out on a change to the script alone, and the test that guards
-      # it never runs.
+      # The last two paths are listed because OwnSpotlessConfigTest reads both. It takes the package
+      # name from the copyright header check's config, and it compares the Spotless build script's
+      # inline header against what CopyrightHeader builds from that name. That comparison is the
+      # only thing holding the three in agreement, so the JUnit job must run when either file
+      # changes. Without the globs the job is filtered out on a change to either one alone, and the
+      # test that guards them never runs.
       source-paths: |
         src/**/*.java
         .github/ci/junit/src/test/**/*.java
         .github/ci/spotless/build.gradle.kts
+        .github/ci/copyright-header/config
     secrets:
       VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
       VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
