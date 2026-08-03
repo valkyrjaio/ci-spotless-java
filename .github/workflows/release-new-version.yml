@@ -1,0 +1,40 @@
+name: Create a New Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version component to bump (auto, patch, feature, yearly, or rc)'
+        required: true
+        type: choice
+        default: auto
+        options:
+          - auto
+          - patch
+          - feature
+          - yearly
+          - rc
+
+run-name: "Release ${{ inputs.bump }} bump on ${{ github.ref_name }}"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: valkyrjaio/.github/.github/workflows/_java-create-release.yml@06472907a89cf175883fb9f82d5903fb0b43bea4
+    secrets:
+      VALKYRJA_GHA_APP_ID: ${{ secrets.VALKYRJA_GHA_APP_ID }}
+      VALKYRJA_GHA_PRIVATE_KEY: ${{ secrets.VALKYRJA_GHA_PRIVATE_KEY }}
+    with:
+      bump: ${{ inputs.bump }}
+      dependencies: |
+        [
+          {"name": "Spotless",    "directory": ".github/ci/spotless"},
+          {"name": "ArchUnit",    "directory": ".github/ci/archunit"},
+          {"name": "ErrorProne",  "directory": ".github/ci/errorprone"},
+          {"name": "SpotBugs",    "directory": ".github/ci/spotbugs"},
+          {"name": "JUnit",       "directory": ".github/ci/junit"}
+        ]
+      info-class-path: src/main/java/io/valkyrja/template/constant/TemplateInfo.java
+      info-class-name: TemplateInfo
