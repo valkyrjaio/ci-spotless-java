@@ -52,16 +52,16 @@ plugin repository, so the build needs no `pluginManagement` block.
 
 ### What a repository can state
 
-| Property                  | Default    | Holds                                              |
-| :------------------------ | :--------- | :------------------------------------------------- |
-| `packageName`             | required   | The name the copyright header states               |
-| `javaTargets`             | required   | The patterns that select the Java files            |
-| `javaTargetExcludes`      | none       | The patterns that remove a file from `javaTargets` |
-| `shellTargets`            | none       | The entry point scripts that take the header       |
-| `googleJavaFormatVersion` | `1.27.0`   | The formatter version                              |
+| Property                  | Default  | Holds                                              |
+| :------------------------ | :------- | :------------------------------------------------- |
+| `packageName`             | required | The name the copyright header states               |
+| `javaTargets`             | required | The patterns that select the Java files            |
+| `javaTargetExcludes`      | none     | The patterns that remove a file from `javaTargets` |
+| `shellTargets`            | none     | The entry point scripts that take the header       |
+| `googleJavaFormatVersion` | `1.27.0` | The formatter version                              |
 
 Scope a CI build's pattern to `src/test/java`. A `src/test/resources` tree can
-hold `.java` files that are test *data* rather than source, and formatting one
+hold `.java` files that are test _data_ rather than source, and formatting one
 rewrites the input that a test asserts on.
 
 An entry point script has no extension, so a `**/*.java` pattern cannot reach it
