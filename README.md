@@ -6,6 +6,14 @@
 
 Shared Spotless configuration for Valkyrja Java repositories.
 
+<p>
+    <a href="https://central.sonatype.com/artifact/io.valkyrja/ci-spotless-java"><img src="https://img.shields.io/maven-central/v/io.valkyrja/ci-spotless-java?label=Maven%20Central" alt="Latest Stable Version"></a>
+    <a href="https://github.com/valkyrjaio/ci-spotless-java"><img src="https://img.shields.io/badge/Java-21--25-orange" alt="Java Version"></a>
+    <a href="https://github.com/valkyrjaio/ci-spotless-java/blob/26.x/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
+    <a href="https://github.com/valkyrjaio/ci-spotless-java/actions/workflows/ci.yml?query=branch%3A26.x"><img src="https://github.com/valkyrjaio/ci-spotless-java/actions/workflows/ci.yml/badge.svg?branch=26.x" alt="CI Status"></a>
+    <a href="https://sonarcloud.io/summary/new_code?id=valkyrjaio_ci-spotless-java"><img src="https://sonarcloud.io/api/project_badges/measure?project=valkyrjaio_ci-spotless-java&metric=sqale_rating" alt="Maintainability Rating"></a>
+</p>
+
 This package holds the copyright header text. A repository states only its own
 package name, and this package builds the header from it. A repository that
 keeps a copy of the whole header can drift from the text, and no tool reports
