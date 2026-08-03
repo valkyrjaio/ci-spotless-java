@@ -44,6 +44,16 @@ dependencies {
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
     compileOnly("org.jspecify:jspecify:1.0.1")
+
+    // The Gradle plugin this package publishes compiles against both of these. The root build
+    // gets the Gradle API from `java-gradle-plugin`, which this build does not apply, so it states
+    // the API itself. The tests drive the plugin through ProjectBuilder, so both are on the test
+    // classpath as well as the compile classpath.
+    compileOnly(gradleApi())
+    compileOnly("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
+    testImplementation(gradleApi())
+    testImplementation("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
+
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -66,6 +76,13 @@ tasks.withType<JavaCompile> {
 tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
+
+    // ProjectBuilder, which the plugin tests drive the plugin through, defines synthetic classes
+    // into its own class loader and needs a private lookup into java.lang to do it. The
+    // java-gradle-plugin plugin adds this to a plugin project's test task, and this build does not
+    // apply that plugin, so it states the argument itself. Without it ProjectBuilder raises
+    // "module java.base does not open java.lang to unnamed module".
+    jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
 }
 
 tasks.jacocoTestReport {

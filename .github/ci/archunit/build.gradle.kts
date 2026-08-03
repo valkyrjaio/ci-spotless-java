@@ -46,6 +46,10 @@ sourceSets {
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
     compileOnly("org.jspecify:jspecify:1.0.1")
+
+    // Only the root build applies java-gradle-plugin, so this build states the Gradle API itself.
+    compileOnly(gradleApi())
+    compileOnly("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
     testImplementation("com.tngtech.archunit:archunit-junit5:1.5.0")
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -55,6 +59,8 @@ dependencies {
     "testTreeImplementation"("com.fasterxml.jackson.core:jackson-databind:2.22.1")
     "testTreeImplementation"("org.junit.jupiter:junit-jupiter:6.1.2")
     "testTreeImplementation"("org.jspecify:jspecify:1.0.1")
+    "testTreeImplementation"(gradleApi())
+    "testTreeImplementation"("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
 }
 
 fun isNonStable(version: String): Boolean {
