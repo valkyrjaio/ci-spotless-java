@@ -53,7 +53,7 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates(group.toString(), "spotless", version.toString())
+    coordinates(group.toString(), "ci-spotless", version.toString())
 
     pom {
         name.set("Valkyrja Spotless")
