@@ -12,10 +12,10 @@ package io.valkyrja.spotless.constant;
 public final class SpotlessInfo {
 
     /** The package version. */
-    public static final String VERSION = "26.1.2";
+    public static final String VERSION = "26.1.3";
 
     /** The package version build datetime. */
-    public static final String VERSION_BUILD_DATE_TIME = "August 4 2026 09:10:25 MST";
+    public static final String VERSION_BUILD_DATE_TIME = "August 5 2026 08:59:48 MST";
 
     private SpotlessInfo() {}
 }
