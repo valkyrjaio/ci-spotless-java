@@ -1,6 +1,12 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.3...26.x)
+## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.4...26.x)
+
+## [v26.1.4](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.3...v26.1.4) - 2026-08-06
+
+* [Link] fix: Pin the architecture document links to the version branch by [@MelechMizrachi](https://github.com/MelechMizrachi) in https://github.com/valkyrjaio/ci-spotless-java/pull/13
+* [Workflow] ci: Update .github workflow refs to v26.24.0 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-spotless-java/pull/15
+* [Workflow] ci: Update .github workflow refs to v26.24.1 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-spotless-java/pull/16
 
 ## [v26.1.3](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.2...v26.1.3) - 2026-08-05
 
