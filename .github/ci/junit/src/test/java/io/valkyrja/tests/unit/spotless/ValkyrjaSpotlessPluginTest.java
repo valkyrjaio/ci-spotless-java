@@ -30,14 +30,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-/**
- * Drives {@link ValkyrjaSpotlessPlugin} the way a repository does.
- *
- * <p>Every test applies the plugin to a project, configures the {@code valkyrjaSpotless} block, and
- * evaluates the project. The plugin reads the block in {@code afterEvaluate}, because Spotless
- * takes the targets and the header as values rather than as providers, so a test that never
- * evaluates reaches none of the configuration.
- */
 final class ValkyrjaSpotlessPluginTest {
 
     @TempDir private Path projectDir;
@@ -46,9 +38,6 @@ final class ValkyrjaSpotlessPluginTest {
 
     /**
      * Builds a project that holds one Java file, and applies the plugin to it.
-     *
-     * <p>The file is what makes the target patterns select something. The plugin reports a pattern
-     * that selects no file, so a project with an empty source tree could not configure at all.
      *
      * @throws IOException when the source tree cannot be written
      */
@@ -85,10 +74,6 @@ final class ValkyrjaSpotlessPluginTest {
     /**
      * Reports whether Spotless built the task that runs one format.
      *
-     * <p>Spotless registers a task for each format it is given, so the task is what proves the
-     * plugin configured that format. A format that Spotless never received has no task, and
-     * therefore nothing in the gate that reads its files.
-     *
      * @param format the format name, for example {@code Java}
      * @return whether the task exists
      */
@@ -102,12 +87,9 @@ final class ValkyrjaSpotlessPluginTest {
     }
 
     /**
-     * Evaluates the project and returns the failure that configuration produced.
+     * Evaluates the project and returns the cause of the configuration failure.
      *
-     * <p>Gradle wraps a failure raised in {@code afterEvaluate}, so the test reads the cause rather
-     * than the exception it catches.
-     *
-     * @return the cause of the configuration failure
+     * @return the cause, because Gradle wraps a failure raised in {@code afterEvaluate}
      */
     private Throwable evaluateExpectingFailure() {
         final Throwable thrown = assertThrows(Throwable.class, this::evaluate);
