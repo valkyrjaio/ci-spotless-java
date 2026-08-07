@@ -53,9 +53,16 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
     compileOnly("org.jspecify:jspecify:1.0.1")
 
+    // The Gradle plugin this package publishes compiles against both of these. Only the root build
+    // applies java-gradle-plugin, which would supply the Gradle API, so this build states it.
+    compileOnly(gradleApi())
+    compileOnly("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
+
     // Mirrors the JUnit build's test classpath — needed only so the tests compile here.
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
     testImplementation("org.jspecify:jspecify:1.0.1")
+    testImplementation(gradleApi())
+    testImplementation("com.diffplug.spotless:spotless-plugin-gradle:8.9.0")
 }
 
 spotbugs {
