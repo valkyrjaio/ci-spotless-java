@@ -8,7 +8,7 @@
 
 plugins {
     java
-    id("com.github.ben-manes.versions") version "0.59.0"
+    id("com.github.ben-manes.versions") version "0.60.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
 
@@ -47,13 +47,13 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
     compileOnly("org.jspecify:jspecify:1.0.1")
     testImplementation("com.tngtech.archunit:archunit-junit5:1.5.0")
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // Mirrors the JUnit build's test classpath — needed only so the tests compile here. The `src`
     // dependencies are repeated because a custom source set does not inherit `main`'s.
     "testTreeImplementation"("com.fasterxml.jackson.core:jackson-databind:2.22.1")
-    "testTreeImplementation"("org.junit.jupiter:junit-jupiter:6.1.2")
+    "testTreeImplementation"("org.junit.jupiter:junit-jupiter:6.1.3")
     "testTreeImplementation"("org.jspecify:jspecify:1.0.1")
 }
 

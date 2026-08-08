@@ -12,7 +12,7 @@ import net.ltgt.gradle.errorprone.errorprone
 plugins {
     java
     id("net.ltgt.errorprone") version "5.1.0"
-    id("com.github.ben-manes.versions") version "0.59.0"
+    id("com.github.ben-manes.versions") version "0.60.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
 
@@ -50,7 +50,7 @@ dependencies {
     errorprone("com.uber.nullaway:nullaway:0.13.8")
 
     // Mirrors the JUnit build's test classpath — needed only so the tests compile here.
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testImplementation("org.jspecify:jspecify:1.0.1")
 }
 
