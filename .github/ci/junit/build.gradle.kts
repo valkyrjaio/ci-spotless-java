@@ -42,7 +42,7 @@ dependencies {
     jacocoAgent("org.jacoco:org.jacoco.agent:0.8.15")
     jacocoAnt("org.jacoco:org.jacoco.ant:0.8.15")
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.2")
     compileOnly("org.jspecify:jspecify:1.0.1")
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
