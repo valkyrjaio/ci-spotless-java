@@ -8,7 +8,7 @@
 
 plugins {
     id("com.diffplug.spotless") version "8.10.2"
-    id("com.github.ben-manes.versions") version "0.62.0"
+    id("com.github.ben-manes.versions") version "0.63.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
 
