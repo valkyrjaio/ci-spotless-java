@@ -12,8 +12,8 @@ import com.github.spotbugs.snom.SpotBugsTask
 
 plugins {
     java
-    id("com.github.spotbugs") version "6.5.12"
-    id("com.github.ben-manes.versions") version "0.65.0"
+    id("com.github.spotbugs") version "6.5.13"
+    id("com.github.ben-manes.versions") version "0.66.0"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
 }
 
@@ -48,7 +48,7 @@ dependencies {
     // The SpotBugs tool version is declared here rather than via `spotbugs { toolVersion }` so it
     // is a real dependency notation. useLatestVersions only rewrites dependency notations, so a
     // toolVersion string is reported as outdated every run but never updated — it drifts forever.
-    spotbugs("com.github.spotbugs:spotbugs:4.10.4")
+    spotbugs("com.github.spotbugs:spotbugs:4.10.5")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.22.3")
     compileOnly("org.jspecify:jspecify:1.0.1")
