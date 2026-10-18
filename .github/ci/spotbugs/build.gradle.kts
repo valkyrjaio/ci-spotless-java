@@ -50,7 +50,7 @@ dependencies {
     // toolVersion string is reported as outdated every run but never updated — it drifts forever.
     spotbugs("com.github.spotbugs:spotbugs:4.10.5")
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.3")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.22.4")
     compileOnly("org.jspecify:jspecify:1.0.1")
 
     // Mirrors the JUnit build's test classpath — needed only so the tests compile here.
