@@ -1,6 +1,10 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.36...26.x)
+## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.37...26.x)
+
+## [v26.1.37](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.36...v26.1.37) - 2026-10-24
+
+* [Workflow] ci: Update .github workflow refs to v26.26.4 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-spotless-java/pull/60
 
 ## [v26.1.36](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.35...v26.1.36) - 2026-10-23
 
