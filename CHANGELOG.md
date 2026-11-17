@@ -1,6 +1,11 @@
 # Release Notes for 26.x
 
-## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.42...26.x)
+## [Unreleased](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.43...26.x)
+
+## [v26.1.43](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.42...v26.1.43) - 2026-11-17
+
+* [Dependency] build: Update Gradle dependencies by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-spotless-java/pull/68
+* [Workflow] ci: Update .github workflow refs to v26.26.6 by [@valkyrja-volundr](https://github.com/valkyrja-volundr)[bot] in https://github.com/valkyrjaio/ci-spotless-java/pull/69
 
 ## [v26.1.42](https://github.com/valkyrjaio/ci-spotless-java/commits/26.x/compare/v26.1.41...v26.1.42) - 2026-11-08
 
