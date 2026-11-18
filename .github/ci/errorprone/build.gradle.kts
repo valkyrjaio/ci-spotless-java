@@ -46,7 +46,7 @@ sourceSets {
 dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.23.0")
     compileOnly("org.jspecify:jspecify:1.0.1")
-    errorprone("com.google.errorprone:error_prone_core:2.52.0")
+    errorprone("com.google.errorprone:error_prone_core:2.53.0")
     errorprone("com.uber.nullaway:nullaway:0.14.4")
 
     // Mirrors the JUnit build's test classpath — needed only so the tests compile here.
