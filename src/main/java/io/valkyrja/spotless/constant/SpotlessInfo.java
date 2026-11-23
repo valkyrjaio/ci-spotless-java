@@ -15,7 +15,7 @@ public final class SpotlessInfo {
     public static final String VERSION = "26.1.45";
 
     /** The package version build datetime. */
-    public static final String VERSION_BUILD_DATE_TIME = "November 22 2026 11:10:53 MST";
+    public static final String VERSION_BUILD_DATE_TIME = "November 23 2026 15:22:17 MST";
 
     private SpotlessInfo() {}
 }
